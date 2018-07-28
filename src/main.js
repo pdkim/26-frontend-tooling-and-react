@@ -41,22 +41,23 @@ class App extends React.Component {
         say({
           text: 'Click for me to say gibberish',
           cow: ''
-        })
+        }),
     }
   }
 
   //add methods here
 
   cowsay() {
-    let newContent = { content: say({ 
-      text: `${faker.lorem.sentence(15)}`,
-      cow: this.state.content.cow
-    }) };
+    let newContent = {
+      content:
+        say({
+          text: `${faker.lorem.sentence(15)}`,
+        })
+    };
     this.setState(newContent);
   }
 
   animal(event) {
-    console.log(event.target);
     this.setState({
       content: say({
         text: 'You changed me!',
