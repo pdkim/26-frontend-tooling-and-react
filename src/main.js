@@ -34,6 +34,7 @@ class App extends React.Component {
     super(props);
 
     this.cowsay = this.cowsay.bind(this);
+    this.animal = this.animal.bind(this);
 
     this.state = {
       content:
@@ -48,11 +49,21 @@ class App extends React.Component {
 
   cowsay() {
     let newContent = { content: say({ 
-      text: `${faker.lorem.sentence(15)}`}) };
+      text: `${faker.lorem.sentence(15)}`,
+      cow: this.state.content.cow
+    }) };
     this.setState(newContent);
   }
 
-
+  animal(event) {
+    console.log(event.target);
+    this.setState({
+      content: say({
+        text: 'You changed me!',
+        cow: event.target.value
+      })
+    })
+  }
 
   render() {
     return (
@@ -64,8 +75,8 @@ class App extends React.Component {
         <br></br>
         <h3>Change animal?</h3>
         <select value={this.state.content.cow} onChange={this.animal}>
-          <option value="cow">Cow</option>
-          <option value="squirrel">Squirrel</option>
+          <option value="">Cow</option>
+          <option value={SQUIRREL}>Squirrel</option>
         </select>
         <Footer />
       </div>
